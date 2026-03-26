@@ -59,8 +59,9 @@ fi
 section "Phase 1: Security Hardening"
 
 info "Updating system packages..."
+export DEBIAN_FRONTEND=noninteractive
 apt update -qq
-apt upgrade -y -qq
+apt -y -qq -o Dpkg::Options::="--force-confold" upgrade
 info "System updated"
 
 # Create claude user

@@ -20,8 +20,9 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 section "System Update"
+export DEBIAN_FRONTEND=noninteractive
 apt update -qq
-apt upgrade -y -qq
+apt -y -qq -o Dpkg::Options::="--force-confold" upgrade
 info "System packages updated"
 
 section "Create claude User"
